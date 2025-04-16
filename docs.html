@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCB Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo-container">
+                <img src="RCBLogo.png" alt="RCB Logo" class="logo-img">
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docs.html" class="active">Documentation</a></li>
+                <li><a href="https://github.com/rcb-language/rcb">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="docs" class="section">
+        <div class="container">
+            <h1>Documentation</h1>
+            
+            <div class="docs-grid">
+                <div class="docs-sidebar">
+                    <h3>Contents</h3>
+                    <nav class="docs-nav">
+                        <ul>
+                            <li><a href="#getting-started">Getting Started</a></li>
+                            <li><a href="#language-basics">Language Basics</a></li>
+                            <li><a href="#data-analysis">Data Analysis</a></li>
+                            <li><a href="#graphics">Graphics</a></li>
+                            <li><a href="#system-programming">System Programming</a></li>
+                            <li><a href="#package-management">Package Management</a></li>
+                            <li><a href="#examples">Examples</a></li>
+                            <li><a href="#troubleshooting">Troubleshooting</a></li>
+                            <li><a href="#api-reference">API Reference</a></li>
+                            <li><a href="#performance">Performance Optimization</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="docs-content">
+                    <section id="getting-started">
+                        <h2>Getting Started</h2>
+                        <p>Welcome to RCB! This documentation will guide you through using the RCB programming language.</p>
+                        
+                        <h3>Hello World Program</h3>
+                        <pre><code class="language-c">// Hello World in RCB
+#include <stdio.h>
+
+int main() {
+    printf("Welcome to RCB Programming Language!\n");
+    printf("RCB combines features from R, C, and B languages.\n");
+    printf("Type 'ee sala cup namde' to check if everything is working!\n");
+    return 0;
+}</code></pre>
+
+                        <h3>Compiling Your First Program</h3>
+                        <p>Save the code above as <code>hello.rcb</code> and compile it using:</p>
+                        <pre><code class="language-bash">rcbcc hello.rcb</code></pre>
+                        <p>Run the program:</p>
+                        <pre><code class="language-bash">./hello</code></pre>
+
+                        <h3>Basic Program Structure</h3>
+                        <pre><code class="language-c">// Basic RCB program structure
+#include <rcb.h>  // Main RCB header
+#include <stdio.h> // Standard I/O
+#include <stdlib.h> // Standard library
+
+int main() {
+    // Program initialization
+    rcb_init();
+    
+    // Main code
+    printf("RCB Program Started\n");
+    
+    // Program cleanup
+    rcb_cleanup();
+    return 0;
+}</code></pre>
+                    </section>
+
+                    <section id="language-basics">
+                        <h2>Language Basics</h2>
+                        
+                        <h3>Variables and Data Types</h3>
+                        <pre><code class="language-c">// Basic types
+int number = 42;           // Integer
+float decimal = 3.14;      // Floating point
+char letter = 'A';         // Character
+bool is_true = true;       // Boolean
+
+// Arrays
+int numbers[5] = {1, 2, 3, 4, 5};
+char text[] = "Hello";
+
+// Pointers
+int* ptr = &number;
+float* decimal_ptr = &decimal;
+
+// Structs
+struct Person {
+    char name[50];
+    int age;
+    float height;
+};
+
+// Enums
+enum Color {
+    RED = 0,
+    GREEN = 1,
+    BLUE = 2
+};
+
+// Unions
+union Data {
+    int i;
+    float f;
+    char str[20];
+};</code></pre>
+
+                        <h3>Advanced Control Structures</h3>
+                        <pre><code class="language-c">// Switch statement
+switch (value) {
+    case 1:
+        printf("One\n");
+        break;
+    case 2:
+        printf("Two\n");
+        break;
+    default:
+        printf("Other\n");
+}
+
+// Do-while loop
+do {
+    // code
+} while (condition);
+
+// Break and continue
+for (int i = 0; i < 10; i++) {
+    if (i == 5) continue;  // Skip iteration
+    if (i == 8) break;    // Exit loop
+    printf("%d\n", i);
+}
+
+// Goto (use with caution)
+start:
+    printf("Loop\n");
+    if (condition) goto start;</code></pre>
+
+                        <h3>Functions and Scope</h3>
+                        <pre><code class="language-c">// Function declaration
+int add(int a, int b);
+
+// Function definition
+int add(int a, int b) {
+    return a + b;
+}
+
+// Variable scope
+void example() {
+    int x = 10;  // Local scope
+    {
+        int y = 20;  // Block scope
+        printf("x = %d, y = %d\n", x, y);
+    }
+    // y is not accessible here
+}</code></pre>
+                    </section>
+
+                    <section id="data-analysis">
+                        <h2>Data Analysis</h2>
+                        
+                        <h3>Data Frames and Matrices</h3>
+                        <pre><code class="language-c">// Create and manipulate data frames
+DataFrame df = DataFrame_create();
+DataFrame_add_column(df, "age", DATA_TYPE_INT);
+DataFrame_add_column(df, "name", DATA_TYPE_STRING);
+DataFrame_add_column(df, "salary", DATA_TYPE_FLOAT);
+
+// Add data
+DataFrame_add_row(df, {25, "John", 50000.0});
+DataFrame_add_row(df, {30, "Jane", 60000.0});
+
+// Data manipulation
+DataFrame_filter(df, "age > 25");
+DataFrame_sort(df, "salary", SORT_DESCENDING);
+DataFrame_group_by(df, "age");
+
+// Statistical functions
+float mean = DataFrame_mean(df, "salary");
+float median = DataFrame_median(df, "salary");
+float std_dev = DataFrame_stddev(df, "salary");
+
+// Matrix operations
+Matrix mat = Matrix_create(3, 3);
+Matrix_add(mat, other_matrix);
+Matrix_multiply(mat, other_matrix);
+Matrix_transpose(mat);
+Matrix_inverse(mat);</code></pre>
+
+                        <h3>Advanced Visualization</h3>
+                        <pre><code class="language-c">// Create a complex plot
+Plot plot = Plot_create();
+
+// Add multiple data series
+Plot_add_line(plot, x_data, y_data, "Series 1");
+Plot_add_scatter(plot, x_data2, y_data2, "Series 2");
+
+// Customize plot
+Plot_set_title(plot, "Complex Analysis");
+Plot_set_xlabel(plot, "Time (s)");
+Plot_set_ylabel(plot, "Value");
+Plot_set_legend(plot, true);
+Plot_set_grid(plot, true);
+
+// Add statistical overlays
+Plot_add_trendline(plot, x_data, y_data);
+Plot_add_confidence_interval(plot, x_data, y_data);
+
+// Save plot
+Plot_save(plot, "analysis.png");
+
+// Show plot
+Plot_show(plot);</code></pre>
+
+                        <h3>Time Series Analysis</h3>
+                        <pre><code class="language-c">// Time series data
+TimeSeries ts = TimeSeries_create();
+TimeSeries_add_data(ts, timestamp, value);
+
+// Analysis functions
+float trend = TimeSeries_trend(ts);
+float seasonality = TimeSeries_seasonality(ts);
+float forecast = TimeSeries_forecast(ts, future_timestamp);
+
+// ARIMA model
+ARIMA_model model = ARIMA_create(1, 1, 1);
+ARIMA_fit(model, ts);
+float prediction = ARIMA_predict(model, future_timestamp);
+
+// Seasonal decomposition
+TimeSeries trend = TimeSeries_decompose_trend(ts);
+TimeSeries seasonal = TimeSeries_decompose_seasonal(ts);
+TimeSeries residual = TimeSeries_decompose_residual(ts);</code></pre>
+                    </section>
+
+                    <section id="graphics">
+                        <h2>Graphics</h2>
+                        
+                        <h3>OpenGL Basics</h3>
+                        <pre><code class="language-c">// Create OpenGL window
+Window window = Window_create(800, 600, "RCB Graphics");
+
+// Set up viewport and perspective
+Window_set_viewport(window, 800, 600);
+Window_set_perspective(window, 45.0f, 800.0f/600.0f, 0.1f, 100.0f);
+
+// Main loop
+while (Window_is_running(window)) {
+    // Clear screen
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+    
+    // Handle input
+    if (Window_is_key_pressed(window, GLFW_KEY_ESCAPE)) {
+        Window_close(window);
+    }
+    
+    // Draw objects
+    draw_rectangle(0.5, 0.5, 0.2, 0.2, 1.0, 0.0, 0.0);
+    draw_circle(0.3, 0.3, 0.1, 0.0, 1.0, 0.0);
+    
+    // Swap buffers
+    Window_swap_buffers(window);
+}</code></pre>
+
+                        <h3>Advanced Graphics</h3>
+                        <pre><code class="language-c">// Create shader program
+ShaderProgram shader = Shader_create();
+
+// Load shaders
+Shader_load_vertex_shader(shader, "vertex_shader.glsl");
+Shader_load_fragment_shader(shader, "fragment_shader.glsl");
+
+// Set up textures
+Texture texture = Texture_load("texture.png");
+Texture_bind(texture);
+
+// Create 3D objects
+Mesh mesh = Mesh_create();
+Mesh_add_vertex(mesh, position, normal, texcoord);
+Mesh_upload(mesh);
+
+// Lighting
+Light light = Light_create();
+Light_set_position(light, 0.0, 0.0, 1.0);
+Light_set_color(light, 1.0, 1.0, 1.0);
+
+// Animation
+Animation anim = Animation_create();
+Animation_add_keyframe(anim, 0.0, position1);
+Animation_add_keyframe(anim, 1.0, position2);
+Animation_update(anim, time);
+
+// Physics
+PhysicsWorld world = Physics_create_world();
+Physics_add_rigidbody(world, object, mass);
+Physics_apply_force(world, object, force);
+Physics_update(world, timestep);</code></pre>
+
+                        <h3>Example: 3D Scene</h3>
+                        <pre><code class="language-c">// Create window
+Window window = Window_create(1280, 720, "3D Scene");
+
+// Load models
+Model model = Model_load("model.obj");
+Texture texture = Texture_load("texture.png");
+
+// Set up camera
+Camera camera = Camera_create();
+Camera_set_position(camera, 0.0, 0.0, 5.0);
+Camera_set_rotation(camera, 0.0, 0.0, 0.0);
+
+// Main loop
+while (Window_is_running(window)) {
+    // Update camera
+    Camera_update(camera);
+    
+    // Render
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    Model_render(model, camera);
+    
+    Window_swap_buffers(window);
+}</code></pre>
+                    </section>
+
+                    <section id="system-programming">
+                        <h2>System Programming</h2>
+                        
+                        <h3>Memory Management</h3>
+                        <pre><code class="language-c">// Dynamic memory allocation
+void* memory = malloc(size);
+void* aligned_memory = aligned_alloc(alignment, size);
+void* reallocated = realloc(memory, new_size);
+free(memory);
+
+// Memory pools
+MemoryPool pool = MemoryPool_create(size);
+void* block = MemoryPool_allocate(pool, block_size);
+MemoryPool_free(pool, block);
+MemoryPool_destroy(pool);
+
+// Memory debugging
+MemoryTracker tracker = MemoryTracker_create();
+MemoryTracker_track(tracker, memory);
+MemoryTracker_dump(tracker);</code></pre>
+
+                        <h3>Process Control</h3>
+                        <pre><code class="language-c">// Process creation
+pid_t pid = fork();
+if (pid == 0) {
+    // Child process
+    execvp("command", args);
+} else {
+    // Parent process
+    int status;
+    waitpid(pid, &status, 0);
+}
+
+// Process groups
+setpgid(pid, pgid);
+killpg(pgid, signal);
+
+// Signals
+signal(SIGINT, signal_handler);
+raise(SIGINT);
+
+// Threads
+pthread_t thread;
+pthread_create(&thread, NULL, thread_function, arg);
+pthread_join(thread, NULL);</code></pre>
+
+                        <h3>Network Programming</h3>
+                        <pre><code class="language-c">// Server setup
+int server_sock = socket(AF_INET, SOCK_STREAM, 0);
+bind(server_sock, (struct sockaddr*)&server_addr, sizeof(server_addr));
+listen(server_sock, 5);
+
+// Client connection
+int client_sock = accept(server_sock, NULL, NULL);
+
+// Send/Receive data
+send(client_sock, data, length, 0);
+recv(client_sock, buffer, buffer_size, 0);
+
+// UDP example
+int udp_sock = socket(AF_INET, SOCK_DGRAM, 0);
+
+// Network utilities
+struct addrinfo hints, *res;
+getaddrinfo("hostname", "port", &hints, &res);
+
+// TLS/SSL
+SSL_CTX* ctx = SSL_CTX_new(TLS_server_method());
+SSL* ssl = SSL_new(ctx);
+SSL_accept(ssl);
+
+// DNS resolution
+struct hostent* host = gethostbyname("hostname");</code></pre>
+
+                        <h3>Device Drivers</h3>
+                        <pre><code class="language-c">// Device file operations
+int device_fd = open("/dev/device", O_RDWR);
+read(device_fd, buffer, size);
+write(device_fd, buffer, size);
+close(device_fd);
+
+// IOCTL operations
+ioctl(device_fd, IOCTL_COMMAND, arg);
+
+// Memory-mapped I/O
+void* device_mem = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, device_fd, 0);
+
+// Interrupt handling
+struct sigaction sa;
+sa.sa_handler = interrupt_handler;
+sigaction(SIGINT, &sa, NULL);
+
+// DMA operations
+struct dma_buffer buffer;
+dma_map_buffer(&buffer);
+dma_unmap_buffer(&buffer);</code></pre>
+                    </section>
+
+                    <section id="package-management">
+                        <h2>Package Management</h2>
+                        
+                        <h3>Basic Commands</h3>
+                        <pre><code class="language-bash"># Install a package
+rcbpm install package_name
+
+# Install specific version
+rcbpm install package_name@1.0.0
+
+# List installed packages
+rcbpm list
+
+# List available packages
+rcbpm search query
+
+# Remove a package
+rcbpm remove package_name
+
+# Update a package
+rcbpm update package_name
+
+# Update all packages
+rcbpm update</code></pre>
+
+                        <h3>Package Configuration</h3>
+                        <pre><code class="language-c">// Create package configuration
+rcb_package.json:
+{
+    "name": "my-package",
+    "version": "1.0.0",
+    "dependencies": {
+        "opengl": "^1.0.0",
+        "math": "^2.0.0"
+    },
+    "scripts": {
+        "build": "rcbc build",
+        "test": "rcbc test"
+    }
+}
+
+// Install dependencies
+rcbpm install</code></pre>
+
+                        <h3>Package Development</h3>
+                        <pre><code class="language-c">// Package structure
+my-package/
+├── src/
+│   └── package.c
+├── include/
+│   └── package.h
+├── examples/
+│   └── example.rcb
+└── rcb_package.json
+
+// Package API
+extern "C" {
+    void package_init();
+    void package_cleanup();
+}
+
+// Export functions
+RCB_EXPORT void package_function() {
+    // Implementation
+}</code></pre>
+
+                        <h3>Package Management API</h3>
+                        <pre><code class="language-c">// Package management functions
+bool rcbpm_install(const char* package);
+bool rcbpm_remove(const char* package);
+bool rcbpm_update(const char* package);
+bool rcbpm_list();
+bool rcbpm_search(const char* query);
+
+// Package configuration
+struct PackageConfig {
+    char* name;
+    char* version;
+    char** dependencies;
+    char* description;
+};
+
+// Package installation
+bool PackageInstaller_install(const char* package);
+bool PackageInstaller_uninstall(const char* package);
+bool PackageInstaller_update(const char* package);</code></pre>
+                    </section>
+
+                    <section id="troubleshooting">
+                        <h2>Troubleshooting</h2>
+                        
+                        <h3>Common Issues</h3>
+                        <div class="troubleshooting-grid">
+                            <div class="troubleshooting-card">
+                                <h3>OpenGL Context Issues</h3>
+                                <p><strong>Problem:</strong> Black screen or no rendering</p>
+                                <p><strong>Solution:</strong> Verify context creation and initialization.</p>
+                                <pre><code class="language-c">// Check context creation
+if (!glfwInit()) {
+    printf("Failed to initialize GLFW\n");
+    return -1;
+}
+
+// Verify OpenGL version
+glGetString(GL_VERSION);
+
+// Check framebuffer status
+GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+if (status != GL_FRAMEBUFFER_COMPLETE) {
+    printf("Framebuffer error: %d\n", status);
+}</code></pre>
+                                <p><strong>Common Causes:</strong></p>
+                                <ul>
+                                    <li>Missing OpenGL extensions</li>
+                                    <li>Incorrect framebuffer setup</li>
+                                    <li>Shader compilation errors</li>
+                                </ul>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Memory Fragmentation</h3>
+                                <p><strong>Problem:</strong> Memory allocation failures</p>
+                                <p><strong>Solution:</strong> Use memory pools and alignment.</p>
+                                <pre><code class="language-c">// Use memory pool
+MemoryPool* pool = MemoryPool_create(POOL_SIZE);
+void* block = MemoryPool_allocate(pool, BLOCK_SIZE);
+
+// Alignment
+void* aligned = aligned_alloc(ALIGNMENT, size);
+
+// Memory tracking
+rcb_enable_memory_tracking();
+rcb_dump_memory_usage();</code></pre>
+                                <p><strong>Common Causes:</strong></p>
+                                <ul>
+                                    <li>Small allocations</li>
+                                    <li>Fragmented memory pool</li>
+                                    <li>Memory leaks</li>
+                                </ul>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Network Connectivity</h3>
+                                <p><strong>Problem:</strong> Connection timeouts</p>
+                                <p><strong>Solution:</strong> Implement proper error handling.</p>
+                                <pre><code class="language-c">// Non-blocking I/O
+int flags = fcntl(fd, F_GETFL, 0);
+fcntl(fd, F_SETFL, flags | O_NONBLOCK);
+
+// Timeout handling
+struct timeval timeout = {5, 0};
+setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+
+// Connection retry
+int retries = 0;
+while (connect(fd, (struct sockaddr*)&addr, sizeof(addr)) == -1 && retries < MAX_RETRIES) {
+    retries++;
+    usleep(RETRY_DELAY);
+}</code></pre>
+                                <p><strong>Common Causes:</strong></p>
+                                <ul>
+                                    <li>Network congestion</li>
+                                    <li>Firewall blocks</li>
+                                    <li>Connection timeouts</li>
+                                </ul>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Performance Bottlenecks</h3>
+                                <p><strong>Problem:</strong> Application runs slow</p>
+                                <p><strong>Solution:</strong> Profile and optimize.</p>
+                                <pre><code class="language-c">// Profiling
+rcb_start_profiling();
+// critical code
+rcb_stop_profiling();
+
+// Performance metrics
+float frame_time = rcb_get_frame_time();
+size_t memory_usage = rcb_get_memory_usage();
+
+// CPU profiling
+profile_cpu_usage();
+
+// Memory profiling
+profile_heap_usage();</code></pre>
+                                <p><strong>Common Causes:</strong></p>
+                                <ul>
+                                    <li>Unoptimized loops</li>
+                                    <li>Excessive I/O operations</li>
+                                    <li>Graphics pipeline inefficiencies</li>
+                                    <li>Memory leaks</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Advanced Debugging</h3>
+                        <pre><code class="language-c">// Memory debugging
+rcb_enable_memory_tracking();
+rcb_dump_memory_usage();
+rcb_check_memory_leaks();
+
+// CPU profiling
+rcb_start_profiling();
+// critical code
+rcb_stop_profiling();
+
+// GPU profiling
+glEnable(GL_DEBUG_OUTPUT);
+glDebugMessageCallback(debug_callback, NULL);
+
+// Thread debugging
+pthread_setname_np(pthread_self(), "main_thread");
+pthread_mutex_lock(&mutex);
+
+// Network debugging
+setsockopt(fd, SOL_SOCKET, SO_DEBUG, (char*)&on, sizeof(on));
+
+// File system debugging
+fstat(fd, &stat);
+fsync(fd);</code></pre>
+
+                        <h3>Error Handling Best Practices</h3>
+                        <pre><code class="language-c">// Error handling with try-catch
+try {
+    // risky operation
+} catch (Exception e) {
+    printf("Error: %s\n", e.message);
+}
+
+// Resource cleanup
+RAII_Resource resource = Resource_create();
+// resource will be automatically cleaned up when out of scope
+
+// Error codes
+enum ErrorCode {
+    SUCCESS = 0,
+    ERROR_FILE_NOT_FOUND,
+    ERROR_MEMORY,
+    ERROR_NETWORK
+};
+
+// Error handling function
+bool handle_error(ErrorCode code) {
+    switch (code) {
+        case ERROR_FILE_NOT_FOUND:
+            printf("File not found\n");
+            return false;
+        case ERROR_MEMORY:
+            printf("Memory allocation failed\n");
+            return false;
+        default:
+            return true;
+    }
+}</code></pre>
+                        
+                        <h3>Common Issues</h3>
+                        <div class="troubleshooting-grid">
+                            <div class="troubleshooting-card">
+                                <h3>Compilation Errors</h3>
+                                <p><strong>Problem:</strong> "undefined reference to function"</p>
+                                <p><strong>Solution:</strong> Make sure you've included all necessary headers and linked required libraries.</p>
+                                <pre><code class="language-bash">rcbcc -lrcb -lm -lGL -lglfw3 your_program.rcb</code></pre>
+                                <p><strong>Additional Tips:</strong></p>
+                                <ul>
+                                    <li>Check your include paths</li>
+                                    <li>Verify library versions</li>
+                                    <li>Use verbose compilation flags</li>
+                                </ul>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Memory Leaks</h3>
+                                <p><strong>Problem:</strong> Memory usage keeps increasing</p>
+                                <p><strong>Solution:</strong> Use memory tracking tools and ensure proper cleanup.</p>
+                                <pre><code class="language-c">// Enable memory tracking
+rcb_enable_memory_tracking();
+
+// Check for leaks
+rcb_check_memory_leaks();
+
+// Use RAII pattern
+struct Resource {
+    void* data;
+    ~Resource() { rcb_free(data); }
+};</code></pre>
+                                <p><strong>Common Causes:</strong></p>
+                                <ul>
+                                    <li>Forgetting to free allocated memory</li>
+                                    <li>Memory pool exhaustion</li>
+                                    <li>Resource leaks in loops</li>
+                                </ul>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Graphics Issues</h3>
+                                <p><strong>Problem:</strong> Window not rendering correctly</p>
+                                <p><strong>Solution:</strong> Check OpenGL context initialization and error handling.</p>
+                                <pre><code class="language-c">// Check OpenGL errors
+GLenum error = glGetError();
+if (error != GL_NO_ERROR) {
+    printf("OpenGL Error: %d\n", error);
+}
+
+// Verify context creation
+if (!glfwInit()) {
+    printf("Failed to initialize GLFW\n");
+    return -1;
+}</code></pre>
+                                <p><strong>Common Issues:</strong></p>
+                                <ul>
+                                    <li>OpenGL context not created</li>
+                                    <li>Shader compilation errors</li>
+                                    <li>Missing vertex attributes</li>
+                                </ul>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Package Installation</h3>
+                                <p><strong>Problem:</strong> Package installation fails</p>
+                                <p><strong>Solution:</strong> Check package dependencies and network connection.</p>
+                                <pre><code class="language-bash"># Check package dependencies
+rcbpm list dependencies
+
+# Force reinstall
+rcbpm install --force package_name
+
+# Update package index
+rcbpm update-index</code></pre>
+                                <p><strong>Common Causes:</strong></p>
+                                <ul>
+                                    <li>Missing dependencies</li>
+                                    <li>Network connectivity issues</li>
+                                    <li>Permission problems</li>
+                                </ul>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Performance Issues</h3>
+                                <p><strong>Problem:</strong> Application runs slow</p>
+                                <p><strong>Solution:</strong> Profile and optimize critical sections.</p>
+                                <pre><code class="language-c">// Use profiling tools
+rcb_start_profiling();
+// critical code
+rcb_stop_profiling();
+
+// Check performance metrics
+rcb_get_frame_time();
+rcb_get_memory_usage();</code></pre>
+                                <p><strong>Common Causes:</strong></p>
+                                <ul>
+                                    <li>Memory leaks</li>
+                                    <li>Unoptimized loops</li>
+                                    <li>Excessive I/O operations</li>
+                                    <li>Graphics pipeline inefficiencies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="performance">
+                            <div class="troubleshooting-card">
+                                <h3>Compilation Errors</h3>
+                                <p><strong>Problem:</strong> "undefined reference to function"</p>
+                                <p><strong>Solution:</strong> Make sure you've included all necessary headers and linked required libraries.</p>
+                                <pre><code class="language-bash">rcbcc -lrcb -lm -lGL -lglfw3 your_program.rcb</code></pre>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Memory Leaks</h3>
+                                <p><strong>Problem:</strong> Memory usage keeps increasing</p>
+                                <p><strong>Solution:</strong> Use memory tracking tools and ensure proper cleanup.</p>
+                                <pre><code class="language-c">// Enable memory tracking
+rcb_enable_memory_tracking();
+
+// Check for leaks
+rcb_check_memory_leaks();</code></pre>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Graphics Issues</h3>
+                                <p><strong>Problem:</strong> Window not rendering correctly</p>
+                                <p><strong>Solution:</strong> Check OpenGL context initialization and error handling.</p>
+                                <pre><code class="language-c">// Check OpenGL errors
+GLenum error = glGetError();
+if (error != GL_NO_ERROR) {
+    printf("OpenGL Error: %d\n", error);
+}</code></pre>
+                            </div>
+                            <div class="troubleshooting-card">
+                                <h3>Package Installation</h3>
+                                <p><strong>Problem:</strong> Package installation fails</p>
+                                <p><strong>Solution:</strong> Check package dependencies and network connection.</p>
+                                <pre><code class="language-bash"># Check package dependencies
+rcbpm list dependencies
+
+# Force reinstall
+rcbpm install --force package_name</code></pre>
+                            </div>
+                        </div>
+
+                        <h3>Debugging Tips</h3>
+                        <pre><code class="language-c">// Enable debug mode
+rcb_enable_debug_mode();
+
+// Add debug logging
+RCB_DEBUG("Variable value: %d", value);
+
+// Use breakpoints
+rcb_set_breakpoint();
+
+// Memory debugging
+rcb_dump_memory_usage();</code></pre>
+
+                        <h3>Error Handling Best Practices</h3>
+                        <pre><code class="language-c">// Error handling with try-catch
+try {
+    // risky operation
+} catch (Exception e) {
+    printf("Error: %s\n", e.message);
+}
+
+// Resource cleanup
+RAII_Resource resource = Resource_create();
+// resource will be automatically cleaned up when out of scope
+
+// Error codes
+enum ErrorCode {
+    SUCCESS = 0,
+    ERROR_FILE_NOT_FOUND,
+    ERROR_MEMORY,
+    ERROR_NETWORK
+};
+
+// Error handling function
+bool handle_error(ErrorCode code) {
+    switch (code) {
+        case ERROR_FILE_NOT_FOUND:
+            printf("File not found\n");
+            return false;
+        case ERROR_MEMORY:
+            printf("Memory allocation failed\n");
+            return false;
+        default:
+            return true;
+    }
+}</code></pre>
+                    </section>
+
+                    <section id="api-reference">
+                        <h2>API Reference</h2>
+                        
+                        <h3>Core API</h3>
+                        <div class="api-grid">
+                            <div class="api-card">
+                                <h3>Memory Management</h3>
+                                <pre><code class="language-c">// Memory allocation
+void* rcb_malloc(size_t size);
+void* rcb_calloc(size_t num, size_t size);
+void* rcb_realloc(void* ptr, size_t new_size);
+void rcb_free(void* ptr);
+
+// Memory tracking
+void rcb_enable_memory_tracking();
+void rcb_check_memory_leaks();
+size_t rcb_get_memory_usage();</code></pre>
+                            </div>
+                            <div class="api-card">
+                                <h3>Graphics API</h3>
+                                <pre><code class="language-c">// Window management
+Window* Window_create(int width, int height, const char* title);
+void Window_destroy(Window* window);
+bool Window_is_running(Window* window);
+
+// OpenGL context
+bool Window_init_gl(Window* window);
+void Window_swap_buffers(Window* window);
+
+// Shaders
+Shader* Shader_create();
+bool Shader_load(Shader* shader, const char* source);
+void Shader_destroy(Shader* shader);</code></pre>
+                            </div>
+                            <div class="api-card">
+                                <h3>Data Analysis API</h3>
+                                <pre><code class="language-c">// Data frames
+DataFrame* DataFrame_create();
+void DataFrame_destroy(DataFrame* df);
+bool DataFrame_add_column(DataFrame* df, const char* name, DataType type);
+bool DataFrame_add_row(DataFrame* df, const void* data);
+
+// Statistics
+float DataFrame_mean(DataFrame* df, const char* column);
+float DataFrame_median(DataFrame* df, const char* column);
+float DataFrame_stddev(DataFrame* df, const char* column);
+
+// Visualization
+Plot* Plot_create();
+void Plot_destroy(Plot* plot);
+void Plot_add_data(Plot* plot, const void* x, const void* y);
+void Plot_show(Plot* plot);</code></pre>
+                            </div>
+                            <div class="api-card">
+                                <h3>System API</h3>
+                                <pre><code class="language-c">// Process management
+pid_t rcb_fork();
+void rcb_exec(const char* path, char* const argv[]);
+int rcb_wait(pid_t pid);
+
+// Networking
+int rcb_socket(int domain, int type, int protocol);
+int rcb_bind(int sockfd, const struct sockaddr* addr, socklen_t addrlen);
+int rcb_listen(int sockfd, int backlog);
+int rcb_accept(int sockfd, struct sockaddr* addr, socklen_t* addrlen);
+
+// File system
+int rcb_open(const char* pathname, int flags);
+ssize_t rcb_read(int fd, void* buf, size_t count);
+ssize_t rcb_write(int fd, const void* buf, size_t count);
+int rcb_close(int fd);</code></pre>
+                            </div>
+                        </div>
+
+                        <h3>Package Management API</h3>
+                        <pre><code class="language-c">// Package installation
+bool rcbpm_install(const char* package);
+bool rcbpm_install_version(const char* package, const char* version);
+
+// Package removal
+bool rcbpm_remove(const char* package);
+
+// Package updates
+bool rcbpm_update(const char* package);
+bool rcbpm_update_all();
+
+// Package information
+struct PackageInfo {
+    char* name;
+    char* version;
+    char* description;
+    char** dependencies;
+};
+
+PackageInfo* rcbpm_get_info(const char* package);
+</code></pre>
+                    </section>
+
+                    <section id="playground">
+                        <h2>Interactive Playground</h2>
+                        <div class="playground-container">
+                            <div class="playground-editor">
+                                <div class="editor-toolbar">
+                                    <button id="run-code" class="vscode-btn">
+                                        <i class="fas fa-play"></i> Run
+                                    </button>
+                                    <button id="clear-code" class="vscode-btn">
+                                        <i class="fas fa-eraser"></i> Clear
+                                    </button>
+                                    <button id="save-code" class="vscode-btn">
+                                        <i class="fas fa-save"></i> Save
+                                    </button>
+                                </div>
+                                <div id="code-editor">
+                                    // Try some RCB code!
+                                    #include <rcb.h>
+                                    #include <stdio.h>
+                                    
+                                    int main() {
+                                        printf("Welcome to RCB Playground!\n");
+                                        return 0;
+                                    }
+                                </div>
+                            </div>
+                            <div class="playground-output">
+                                <h3>Output</h3>
+                                <div id="code-output">
+                                    // Output will appear here
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="performance">
+                        <h2>Performance Optimization</h2>
+                        
+                        <h3>Memory Optimization</h3>
+                        <div class="performance-grid">
+                            <div class="performance-card">
+                                <h4>Memory Pools</h4>
+                                <pre><code class="language-c">// Create memory pool
+MemoryPool* pool = MemoryPool_create(POOL_SIZE);
+
+// Allocate from pool
+void* block = MemoryPool_allocate(pool, BLOCK_SIZE);
+
+// Free memory
+MemoryPool_free(pool, block);
+
+// Destroy pool
+MemoryPool_destroy(pool);</code></pre>
+                                <p><strong>Benefits:</strong></p>
+                                <ul>
+                                    <li>Reduced fragmentation</li>
+                                    <li>Faster allocations</li>
+                                    <li>Better cache locality</li>
+                                </ul>
+                            </div>
+                            <div class="performance-card">
+                                <h4>Memory Alignment</h4>
+                                <pre><code class="language-c">// Aligned allocation
+void* aligned = aligned_alloc(ALIGNMENT, size);
+
+// Struct alignment
+struct Data {
+    alignas(16) float x;
+    alignas(16) float y;
+    alignas(16) float z;
+};
+
+// SIMD alignment
+__attribute__((aligned(16))) float data[4];</code></pre>
+                                <p><strong>Benefits:</strong></p>
+                                <ul>
+                                    <li>Improved cache performance</li>
+                                    <li>Reduced memory access time</li>
+                                    <li>Optimized SIMD operations</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Graphics Optimization</h3>
+                        <div class="performance-grid">
+                            <div class="performance-card">
+                                <h4>Batch Rendering</h4>
+                                <pre><code class="language-c">// Create render batch
+RenderBatch* batch = RenderBatch_create();
+
+// Add objects
+batch_add_object(batch, object1);
+batch_add_object(batch, object2);
+
+// Render
+batch_render(batch);
+
+// Destroy batch
+RenderBatch_destroy(batch);</code></pre>
+                                <p><strong>Benefits:</strong></p>
+                                <ul>
+                                    <li>Reduced draw calls</li>
+                                    <li>Improved GPU utilization</li>
+                                    <li>Reduced CPU overhead</li>
+                                </ul>
+                            </div>
+                            <div class="performance-card">
+                                <h4>Shader Optimization</h4>
+                                <pre><code class="language-c">// Shader optimization
+#define SHADER_VERSION 450
+
+// Use early return
+if (discard_condition) {
+    discard;
+}
+
+// Use uniform buffers
+layout(std140) uniform UBO {
+    mat4 model;
+    mat4 view;
+    mat4 projection;
+};
+
+// Use texture arrays
+layout(binding = 0) uniform sampler2DArray textures[8];</code></pre>
+                                <p><strong>Benefits:</strong></p>
+                                <ul>
+                                    <li>Reduced shader complexity</li>
+                                    <li>Improved cache utilization</li>
+                                    <li>Reduced texture switches</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Data Analysis Optimization</h3>
+                        <div class="performance-grid">
+                            <div class="performance-card">
+                                <h4>Vectorized Operations</h4>
+                                <pre><code class="language-c">// Vectorized operations
+DataFrame_vectorize(df, operation);
+
+// SIMD operations
+__attribute__((target("sse4.2")))
+void simd_operation(float* data, size_t length) {
+    // SIMD code
+}
+
+// Parallel processing
+DataFrame_parallel_process(df, function);</code></pre>
+                                <p><strong>Benefits:</strong></p>
+                                <ul>
+                                    <li>Improved CPU utilization</li>
+                                    <li>Reduced processing time</li>
+                                    <li>Optimized data access</li>
+                                </ul>
+                            </div>
+                            <div class="performance-card">
+                                <h4>Memory Caching</h4>
+                                <pre><code class="language-c">// Cache results
+DataFrame_cache_results(df, key);
+
+// Cache invalidation
+DataFrame_invalidate_cache(df, key);
+
+// Memory mapping
+void* data = mmap(NULL, size, PROT_READ, MAP_SHARED, fd, 0);</code></pre>
+                                <p><strong>Benefits:</strong></p>
+                                <ul>
+                                    <li>Reduced I/O operations</li>
+                                    <li>Improved data access</li>
+                                    <li>Reduced processing time</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Profile before optimizing</li>
+                            <li>Use appropriate data structures</li>
+                            <li>Minimize memory allocations</li>
+                            <li>Use parallel processing when possible</li>
+                            <li>Implement proper error handling</li>
+                            <li>Use caching for expensive operations</li>
+                            <li>Optimize critical paths</li>
+                            <li>Use memory pools for small allocations</li>
+                            <li>Implement proper resource cleanup</li>
+                        </ul>
+                        
+                        <h3>Memory Optimization</h3>
+                        <pre><code class="language-c">// Use memory pools for small allocations
+MemoryPool* pool = MemoryPool_create(size);
+void* block = MemoryPool_allocate(pool, block_size);
+
+// Pre-allocate memory
+void* buffer = malloc(buffer_size);
+// Use buffer instead of multiple allocations
+
+// Use static arrays when possible
+static int array[100];
+
+// Memory alignment
+void* aligned = aligned_alloc(alignment, size);</code></pre>
+
+                        <h3>Graphics Optimization</h3>
+                        <pre><code class="language-c">// Use VBOs for static geometry
+VertexBuffer* vbo = VertexBuffer_create();
+VertexBuffer_upload(vbo, vertices, size);
+
+// Use instancing for multiple similar objects
+InstancedMesh* mesh = InstancedMesh_create(count);
+
+// Batch rendering
+RenderBatch* batch = RenderBatch_create();
+batch_add_object(batch, object);
+batch_render(batch);
+
+// Use vertex arrays
+glEnableClientState(GL_VERTEX_ARRAY);
+glVertexPointer(3, GL_FLOAT, 0, vertices);</code></pre>
+
+                        <h3>Data Analysis Optimization</h3>
+                        <pre><code class="language-c">// Use vectorized operations
+DataFrame_vectorize(df, operation);
+
+// Use parallel processing
+DataFrame_parallel_process(df, function);
+
+// Cache results
+DataFrame_cache_results(df, key);
+
+// Use efficient data structures
+HashMap* map = HashMap_create();
+HashSet* set = HashSet_create();</code></pre>
+
+                        <h3>System Programming Optimization</h3>
+                        <pre><code class="language-c">// Use non-blocking I/O
+int flags = fcntl(fd, F_GETFL, 0);
+fcntl(fd, F_SETFL, flags | O_NONBLOCK);
+
+// Use epoll for multiple connections
+epoll_create(max_events);
+epoll_ctl(epoll_fd, EPOLL_CTL_ADD, fd, &event);
+
+// Use thread pools
+ThreadPool* pool = ThreadPool_create(num_threads);
+ThreadPool_submit(pool, function, data);
+
+// Use shared memory for inter-process communication
+shmget(key, size, flags);
+shmat(shmid, NULL, 0);</code></pre>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Profile before optimizing</li>
+                            <li>Use appropriate data structures</li>
+                            <li>Minimize memory allocations</li>
+                            <li>Use parallel processing when possible</li>
+                            <li>Implement proper error handling</li>
+                            <li>Use caching for expensive operations</li>
+                            <li>Optimize critical paths</li>
+                        </ul>
+                    </section>
+
+                    <section id="examples">
+                        <h2>Examples</h2>
+                        
+                        <h3>Data Analysis Examples</h3>
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>Time Series Analysis</h4>
+                                <pre><code class="language-c">// Time Series Forecasting
+#include <rcb.h>
+#include <timeseries.h>
+
+int main() {
+    // Load time series data
+    TimeSeries ts = TimeSeries_load("stock_data.csv");
+    
+    // Preprocess data
+    TimeSeries_normalize(ts);
+    TimeSeries_remove_outliers(ts);
+    
+    // Create ARIMA model
+    ARIMA_model model = ARIMA_create(1, 1, 1);
+    ARIMA_fit(model, ts);
+    
+    // Make predictions
+    float prediction = ARIMA_predict(model, future_timestamp);
+    
+    // Visualize results
+    Plot plot = Plot_create();
+    Plot_add_line(plot, ts.timestamps, ts.values);
+    Plot_add_line(plot, future_timestamps, predictions);
+    Plot_show(plot);
+    
+    return 0;
+}</code></pre>
+                            </div>
+                            <div class="example-card">
+                                <h4>Machine Learning</h4>
+                                <pre><code class="language-c">// Linear Regression
+#include <rcb.h>
+#include <ml.h>
+
+int main() {
+    // Load dataset
+    Dataset data = Dataset_load("housing.csv");
+    
+    // Split data
+    Dataset train, test;
+    Dataset_split(data, 0.8, &train, &test);
+    
+    // Create model
+    LinearRegression model = LinearRegression_create();
+    LinearRegression_train(model, train);
+    
+    // Evaluate
+    float accuracy = LinearRegression_evaluate(model, test);
+    printf("Accuracy: %.2f%%\n", accuracy * 100);
+    
+    // Make prediction
+    float prediction = LinearRegression_predict(model, input);
+    
+    return 0;
+}</code></pre>
+                            </div>
+                            <div class="example-card">
+                                <h4>Statistical Analysis</h4>
+                                <pre><code class="language-c">// Statistical Analysis
+#include <rcb.h>
+#include <stats.h>
+
+int main() {
+    // Load data
+    DataFrame df = DataFrame_load("survey.csv");
+    
+    // Basic statistics
+    float mean = DataFrame_mean(df, "age");
+    float median = DataFrame_median(df, "age");
+    float std_dev = DataFrame_stddev(df, "age");
+    
+    // Correlation
+    float correlation = DataFrame_correlation(df, "age", "salary");
+    
+    // Group analysis
+    DataFrame grouped = DataFrame_group_by(df, "department");
+    DataFrame_aggregate(grouped, "mean");
+    
+    return 0;
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <h3>Graphics Examples</h3>
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>3D Game Engine</h4>
+                                <pre><code class="language-c">// 3D Game Engine
+#include <rcb.h>
+#include <opengl.h>
+#include <physics.h>
+
+int main() {
+    // Initialize window
+    Window window = Window_create(1280, 720, "Game Engine");
+    
+    // Load resources
+    Model player = Model_load("player.obj");
+    Texture texture = Texture_load("player.png");
+    
+    // Set up physics
+    PhysicsWorld world = Physics_create_world();
+    Physics_add_rigidbody(world, player, 1.0f);
+    
+    // Main loop
+    while (Window_is_running(window)) {
+        // Handle input
+        if (Window_is_key_pressed(window, GLFW_KEY_ESCAPE)) {
+            break;
+        }
+        
+        // Update physics
+        Physics_update(world, 1.0/60.0);
+        
+        // Render
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        Model_render(player, camera);
+        
+        Window_swap_buffers(window);
+    }
+    
+    return 0;
+}</code></pre>
+                            </div>
+                            <div class="example-card">
+                                <h4>Scientific Visualization</h4>
+                                <pre><code class="language-c">// Scientific Visualization
+#include <rcb.h>
+#include <visualization.h>
+
+int main() {
+    // Load data
+    DataFrame df = DataFrame_load("climate_data.csv");
+    
+    // Create visualization
+    Visualization vis = Visualization_create();
+    
+    // Add plots
+    vis.add_heatmap(df, "temperature", "latitude", "longitude");
+    vis.add_line_plot(df, "time", "temperature");
+    
+    // Add controls
+    vis.add_slider("year", 1900, 2020);
+    vis.add_checkbox("show_trend", true);
+    
+    // Show visualization
+    vis.show();
+    
+    return 0;
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <h3>System Programming Examples</h3>
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>Network Server</h4>
+                                <pre><code class="language-c">// Network Server
+#include <rcb.h>
+#include <network.h>
+#include <thread.h>
+
+void* handle_client(void* arg) {
+    int client_sock = (int)arg;
+    char buffer[1024];
+    
+    while (true) {
+        int bytes_read = recv(client_sock, buffer, sizeof(buffer), 0);
+        if (bytes_read <= 0) break;
+        
+        // Process request
+        Request request = parse_request(buffer);
+        Response response = process_request(request);
+        
+        // Send response
+        send(client_sock, response.data, response.size, 0);
+    }
+    
+    close(client_sock);
+    return NULL;
+}
+
+int main() {
+    // Create server socket
+    int server_sock = socket(AF_INET, SOCK_STREAM, 0);
+    
+    // Bind and listen
+    bind(server_sock, (struct sockaddr*)&server_addr, sizeof(server_addr));
+    listen(server_sock, 5);
+    
+    // Accept connections
+    while (true) {
+        int client_sock = accept(server_sock, NULL, NULL);
+        
+        // Create thread for client
+        pthread_t thread;
+        pthread_create(&thread, NULL, handle_client, (void*)client_sock);
+    }
+    
+    return 0;
+}</code></pre>
+                            </div>
+                            <div class="example-card">
+                                <h4>Device Driver</h4>
+                                <pre><code class="language-c">// Device Driver
+#include <rcb.h>
+#include <device.h>
+#include <memory.h>
+
+int main() {
+    // Open device
+    int device_fd = open("/dev/mydevice", O_RDWR);
+    if (device_fd < 0) {
+        perror("Failed to open device");
+        return -1;
+    }
+    
+    // Allocate memory
+    void* buffer = mmap(NULL, BUFFER_SIZE, 
+                       PROT_READ | PROT_WRITE, 
+                       MAP_SHARED, device_fd, 0);
+    
+    // Set up interrupts
+    struct sigaction sa;
+    sa.sa_handler = interrupt_handler;
+    sigaction(SIGINT, &sa, NULL);
+    
+    // Main loop
+    while (true) {
+        // Read from device
+        read(device_fd, buffer, BUFFER_SIZE);
+        
+        // Process data
+        process_data(buffer);
+        
+        // Write back
+        write(device_fd, buffer, BUFFER_SIZE);
+    }
+    
+    return 0;
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <h3>Complete Data Analysis Example</h3>
+                        <pre><code class="language-c">// Data Analysis Example
+#include <rcb.h>
+#include <dataframe.h>
+#include <plot.h>
+
+int main() {
+    // Load data
+    DataFrame df = DataFrame_load("stock_data.csv");
+    
+    // Data preprocessing
+    DataFrame_filter(df, "date > '2023-01-01'");
+    DataFrame_normalize(df, "price");
+    
+    // Statistical analysis
+    float mean = DataFrame_mean(df, "price");
+    float std_dev = DataFrame_stddev(df, "price");
+    
+    // Time series analysis
+    TimeSeries ts = TimeSeries_from_dataframe(df, "price");
+    float trend = TimeSeries_trend(ts);
+    
+    // Visualization
+    Plot plot = Plot_create();
+    Plot_set_title(plot, "Stock Price Analysis");
+    Plot_add_line(plot, df.get_column("date"), df.get_column("price"));
+    Plot_add_trendline(plot, df.get_column("date"), df.get_column("price"));
+    Plot_save(plot, "analysis.png");
+    
+    return 0;
+}</code></pre>
+
+                        <h3>Complete Graphics Example</h3>
+                        <pre><code class="language-c">// 3D Graphics Example
+#include <rcb.h>
+#include <opengl.h>
+#include <shader.h>
+#include <model.h>
+
+int main() {
+    // Create window
+    Window window = Window_create(1280, 720, "3D Scene");
+    
+    // Load resources
+    Model model = Model_load("spaceship.obj");
+    Texture texture = Texture_load("spaceship.png");
+    
+    // Set up camera
+    Camera camera = Camera_create();
+    Camera_set_position(camera, 0.0, 0.0, 5.0);
+    
+    // Set up lighting
+    Light light = Light_create();
+    Light_set_position(light, 0.0, 0.0, 1.0);
+    
+    // Main loop
+    float angle = 0.0;
+    while (Window_is_running(window)) {
+        // Handle input
+        if (Window_is_key_pressed(window, GLFW_KEY_ESCAPE)) {
+            Window_close(window);
+        }
+        
+        // Update animation
+        angle += 0.01;
+        Model_rotate(model, angle, 0.0, 1.0);
+        
+        // Render
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        Model_render(model, camera);
+        
+        Window_swap_buffers(window);
+    }
+    
+    return 0;
+}</code></pre>
+
+                        <h3>System Programming Example</h3>
+                        <pre><code class="language-c">// Network Server Example
+#include <rcb.h>
+#include <network.h>
+#include <thread.h>
+
+void* handle_client(void* arg) {
+    int client_sock = (int)arg;
+    char buffer[1024];
+    
+    while (true) {
+        int bytes_read = recv(client_sock, buffer, sizeof(buffer), 0);
+        if (bytes_read <= 0) break;
+        
+        // Process data
+        // ...
+        
+        // Send response
+        send(client_sock, buffer, bytes_read, 0);
+    }
+    
+    close(client_sock);
+    return NULL;
+}
+
+int main() {
+    // Create server socket
+    int server_sock = socket(AF_INET, SOCK_STREAM, 0);
+    
+    // Bind and listen
+    bind(server_sock, (struct sockaddr*)&server_addr, sizeof(server_addr));
+    listen(server_sock, 5);
+    
+    // Accept connections
+    while (true) {
+        int client_sock = accept(server_sock, NULL, NULL);
+        
+        // Create thread for client
+        pthread_t thread;
+        pthread_create(&thread, NULL, handle_client, (void*)client_sock);
+    }
+    
+    return 0;
+}</code></pre>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="script.js"></script>
+</body>
+</html>

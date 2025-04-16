@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCB Programming Language</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo-container">
+                <img src="RCBLogo.png" alt="RCB Logo" class="logo-img">
+                <div class="logo-debug"></div>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#docs">Documentation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="RCBLogo.png" alt="RCB Logo" class="hero-logo">
+                <div class="hero-debug"></div>
+                <h1>Welcome to RCB</h1>
+                <p>A powerful programming language combining R, C, and B</p>
+            </div>
+            <div class="download-buttons">
+                <button onclick="downloadWindows()" class="download-btn windows">
+                    <i class="fab fa-windows"></i> Windows
+                </button>
+                <button onclick="downloadMac()" class="download-btn mac">
+                    <i class="fab fa-apple"></i> macOS
+                </button>
+                <button onclick="downloadLinux()" class="download-btn linux">
+                    <i class="fab fa-linux"></i> Linux
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Modern C Syntax</h3>
+                    <ul class="feature-list">
+                        <li>Pointer arithmetic and memory management</li>
+                        <li>Structures and unions</li>
+                        <li>Bitwise operations</li>
+                        <li>Direct hardware access</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>R-style Data Analysis</h3>
+                    <ul class="feature-list">
+                        <li>Data frames and matrices</li>
+                        <li>Statistical functions and distributions</li>
+                        <li>Data visualization with ggplot2-style syntax</li>
+                        <li>Time series analysis</li>
+                        <li>Machine learning algorithms</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>OpenGL Graphics</h3>
+                    <ul class="feature-list">
+                        <li>Modern OpenGL 4.6 support</li>
+                        <li>Shader programming</li>
+                        <li>3D modeling and rendering</li>
+                        <li>Animation and physics integration</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>System Programming</h3>
+                    <ul class="feature-list">
+                        <li>Low-level system access</li>
+                        <li>Memory management</li>
+                        <li>Process control</li>
+                        <li>Network programming</li>
+                        <li>Device drivers</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Package Management</h3>
+                    <ul class="feature-list">
+                        <li>Easy installation: <code>rcbpm install [package]</code></li>
+                        <li>Available packages:</li>
+                        <li>OpenGL graphics library</li>
+                        <li>Math and statistical functions</li>
+                        <li>Plotting and visualization</li>
+                        <li>Machine learning libraries</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Development Tools</h3>
+                    <ul class="feature-list">
+                        <li>Integrated debugger</li>
+                        <li>Code profiling</li>
+                        <li>Memory leak detection</li>
+                        <li>Performance analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="installation" class="section">
+        <div class="container">
+            <h2>Installation</h2>
+            <div class="installation-grid">
+                <div class="installation-card">
+                    <h3>Windows</h3>
+                    <div class="installation-steps">
+                        <p>1. Download the installer from our releases page:</p>
+                        <pre><code class="language-bash">https://github.com/rcb-language/rcb/releases/download/latest/rcb-windows-installer.exe</code></pre>
+                        <p>2. Run the installer and follow the on-screen instructions.</p>
+                        <p>3. The installer will automatically add RCB to your PATH environment variable.</p>
+                    </div>
+                </div>
+                <div class="installation-card">
+                    <h3>macOS</h3>
+                    <div class="installation-steps">
+                        <p>1. Install Homebrew if not already installed:</p>
+                        <pre><code class="language-bash">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                        <p>2. Install RCB using Homebrew:</p>
+                        <pre><code class="language-bash">brew tap rcb-language/rcb
+brew install rcb</code></pre>
+                        <p>3. Verify installation:</p>
+                        <pre><code class="language-bash">rcb --version</code></pre>
+                    </div>
+                </div>
+                <div class="installation-card">
+                    <h3>Linux</h3>
+                    <div class="installation-steps">
+                        <h4>Ubuntu/Debian</h4>
+                        <pre><code class="language-bash">sudo apt-get update
+sudo apt-get install -y build-essential cmake libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev</code></pre>
+                        
+                        <h4>Fedora</h4>
+                        <pre><code class="language-bash">sudo dnf install -y gcc make cmake glfw3-devel mesa-libGL-devel mesa-libGLU-devel</code></pre>
+                        
+                        <h4>Arch Linux</h4>
+                        <pre><code class="language-bash">sudo pacman -S --needed gcc make cmake glfw-x11 glu</code></pre>
+                        
+                        <h4>Common Installation Steps</h4>
+                        <pre><code class="language-bash">wget https://github.com/rcb-language/rcb/releases/download/latest/rcb-linux.tar.gz
+tar -xzf rcb-linux.tar.gz
+sudo cp rcb /usr/local/bin/</code></pre>
+                        
+                        <p>3. Verify installation:</p>
+                        <pre><code class="language-bash">rcb --version</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vscode">
+        <div class="container">
+            <h2>VS Code Integration</h2>
+            <p>Get the best development experience with VS Code</p>
+            <button onclick="downloadVSCode()" class="vscode-btn">
+                <i class="fab fa-vscode"></i> Download VS Code Extension
+            </button>
+        </div>
+    </section>
+
+    <section id="docs">
+        <div class="container">
+            <h2>Documentation</h2>
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <h3>Getting Started</h3>
+                    <p>Learn how to install and set up RCB</p>
+                    <a href="docs/getting-started.html">Read More</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Language Guide</h3>
+                    <p>Explore the language features</p>
+                    <a href="docs/language-guide.html">Read More</a>
+                </div>
+                <div class="doc-card">
+                    <h3>API Reference</h3>
+                    <p>Complete API documentation</p>
+                    <a href="docs/api-reference.html">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 RCB Programming Language. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
